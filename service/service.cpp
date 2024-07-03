@@ -22,8 +22,51 @@ int Toint(string str) {
     return num;
 }
 
+vector<string> ReadFileLines(string path){
+	vector<string>lines;
+	fstream file_handler(path.ctsr());
+	if(file_handler.fail()){
+		cout<<"cant open file\n";
+		return lines;
+	}
+	string line ; // this will be used to store each line includeing all info about a user or a quest as later it will be send to the function split string called by user to deal with each user
+	while(getline(file_handler),line){
+		if(line.size()==0){
+			continue;
+		}
+		lines.push_back(line);
+	}
+	file_handler.close();
+	return lines;
+}
+
+int ShowReadMenu(){
+	int choice;
+	cout<<" Menu \n";
+	cout<<" 1.login\n";
+	cout<<" 2.singup\n";
+	cin>>choice;
+	return choice ;
+}
 
 
+void WriteFileLines(string path, vector<string> lines, bool append = true) {
+	auto status = ios::in | ios::out | ios::app;
+
+	if (!append)
+		status = ios::in | ios::out | ios::trunc;	// overwrite
+
+	fstream file_handler(path.c_str(), status);
+
+	if (file_handler.fail()) {
+		cout << "\n\nERROR: Can't open the file\n\n";
+		return;
+	}
+	for (auto line : lines)
+		file_handler << line << "\n";
+
+	file_handler.close();
+}
 
 
 

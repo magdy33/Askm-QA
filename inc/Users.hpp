@@ -30,4 +30,29 @@ struct user {
     void Print();
 };
 
+
+struct userManger{
+	map<string,user>username_userobject_map // look like name of map describe what dose it do 
+	user current_user;
+	int last_id ;
+	//
+	userManger();
+	
+	void LoadDatabase();
+	
+	void AccessSystem();
+	
+	void Login();
+	
+	void SignUp();
+	
+	void ListUsersNamesIds();
+	
+	pair<int, int> ReadUserId();
+	
+	void UpdateDatabase(User &eachUser);
+};
+
+
+
 #endif // _USERS_H_
